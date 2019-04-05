@@ -1,0 +1,33 @@
+import com.johncnstn.build.DockerPostgresFlywayJooqCodegenTask
+
+task generateJooq (type: DockerPostgresFlywayJooqCodegenTask) {
+    imageId = "postgres:10.7-alpine"
+    inputDirectory = project.rootDir.getPath() + "/src/main/resources/db/migration"
+    outputPackage = basePackage + ".generated"
+    outputDirectory =  jooqSourceDir
+}
+
+clean.doFirst {
+    delete(jooqSourceDir)
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir jooqSourceDir
+        }
+    }
+}
+
+compileJava.dependsOn generateJooq
+
+ext {
+    jooqVersion = "3.11.10" // https://mvnrepository.com/artifact/org.jooq/jooq
+}
+
+dependencies {
+    implementation "javax.annotation:javax.annotation-api:1.3.2"
+    implementation "javax.validation:validation-api:1.1.0.Final"
+    implementation "org.jooq:jooq:${jooqVersion}"
+    implementation "org.springframework:spring-context:5.1.6.RELEASE"
+}

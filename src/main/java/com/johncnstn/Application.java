@@ -1,13 +1,13 @@
-package com.johncnstn.gradleswaggerflywayjooq;
+package com.johncnstn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GradleSwaggerFlywayJooqApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GradleSwaggerFlywayJooqApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

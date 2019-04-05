@@ -54,6 +54,10 @@ ext {
 	jooqSourceDir = file("${jooqOutputDirPath}/src/main/java")
 }
 
+apply from: "gradle/testIntegration.gradle"
+apply from: "gradle/lombok.gradle"
+apply from: "gradle/docker-postgres-flyway-jooq.gradle"
+
 bootRun {
 	args = ["--spring.profiles.active=local"]
 	classpath = sourceSets.main.runtimeClasspath

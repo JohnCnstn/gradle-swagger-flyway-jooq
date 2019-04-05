@@ -25,7 +25,7 @@ CREATE TABLE "user"
   activation_key TEXT                                                NULL UNIQUE,
   reset_date     TIMESTAMP WITH TIME ZONE                            NULL,
   reset_key      TEXT                                                NULL UNIQUE,
-  role           USER_ROLE                DEFAULT 'USER'         NOT NULL,
+  role           USER_ROLE                DEFAULT 'USER'             NOT NULL,
 
   created_at     TIMESTAMP WITH TIME ZONE DEFAULT now()              NOT NULL,
   updated_at     TIMESTAMP WITH TIME ZONE                            NULL,

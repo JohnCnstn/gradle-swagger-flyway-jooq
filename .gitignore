@@ -1,0 +1,18 @@
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
+/build/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+Thumbs.db
+.DS_Store
+build/
+target/
+.project
+.settings
+.classpath

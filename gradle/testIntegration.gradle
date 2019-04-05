@@ -1,0 +1,31 @@
+sourceSets {
+    testIntegration {
+        compileClasspath += main.output
+        runtimeClasspath += main.output
+        java {
+            srcDir file("src/test-integration/java")
+        }
+        resources.srcDir file("src/test-integration/resources")
+    }
+}
+
+idea {
+    module {
+        testSourceDirs += project.sourceSets.testIntegration.java.srcDirs
+        testSourceDirs += project.sourceSets.testIntegration.resources.srcDirs
+    }
+}
+
+configurations {
+    testIntegrationAnnotationProcessor.extendsFrom testAnnotationProcessor
+    testIntegrationCompileClasspath.extendsFrom testCompileClasspath
+    testIntegrationRuntimeClasspath.extendsFrom testRuntimeClasspath
+}
+
+task testIntegration(type: Test) {
+    testClassesDirs = sourceSets.testIntegration.output.classesDirs
+    classpath = sourceSets.testIntegration.runtimeClasspath
+}
+
+check.dependsOn testIntegration
+testIntegration.mustRunAfter test

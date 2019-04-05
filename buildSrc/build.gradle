@@ -1,0 +1,29 @@
+apply plugin: "java"
+
+sourceCompatibility = 11
+targetCompatibility = 11
+assert System.properties["java.specification.version"] == "11"
+
+repositories {
+    jcenter()
+}
+
+ext {
+    swaggerCodegenVersion = "2.4.1"
+    dockerVersion = "3.1.2" // https://mvnrepository.com/artifact/com.github.docker-java/docker-java
+    flywayVersion = "5.2.4" // https://mvnrepository.com/artifact/org.flywaydb/flyway-core
+    jooqVersion = "3.11.10" // https://mvnrepository.com/artifact/org.jooq/jooq
+    postgresqlVersion = "42.2.5" // https://mvnrepository.com/artifact/org.postgresql/postgresql
+}
+
+dependencies {
+    implementation("io.swagger:swagger-codegen:${swaggerCodegenVersion}") {
+        exclude group: "ch.qos.cal10n", module: "cal10n-api"
+    }
+    implementation "com.github.docker-java:docker-java:${dockerVersion}"
+    implementation "org.flywaydb:flyway-core:${flywayVersion}"
+    implementation "org.jooq:jooq-codegen:${jooqVersion}"
+    implementation "org.jooq:jooq-meta:${jooqVersion}"
+    implementation "org.jooq:jooq:${jooqVersion}"
+    implementation "org.postgresql:postgresql:${postgresqlVersion}"
+}
